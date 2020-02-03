@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="022f0c29-4152-4265-b9ee-e539ef3b58e9" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/changxing_invoice$xsz_parse.coverage" NAME="xsz_parse Coverage Results" MODIFIED="1579156095497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/changxing_invoice$updb190327.coverage" NAME="updb190327 Coverage Results" MODIFIED="1579233209851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/changxing_invoice$update_trade_com.coverage" NAME="update_trade_com Coverage Results" MODIFIED="1579678296079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="updb190327.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/updb190327.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+              <folding>
+                <marker date="1578639297984" expanded="true" signature="220:285" ph="SELECT Spmc,... dic_good_type_bill" />
+                <marker date="1578639297984" expanded="true" signature="592:697" ph="SELECT DISTI... financial_exchange" />
+                <marker date="1578639297984" expanded="true" signature="802:906" ph="UPDATE financial_exchange... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xsz_parse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xsz_parse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="45" column="65" lean-forward="false" selection-start-line="45" selection-start-column="59" selection-end-line="45" selection-end-column="65" />
+              <folding>
+                <marker date="1579156094928" expanded="true" signature="6305:6457" ph="INSERT INTO financial_exchange... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="swxls_parse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/swxls_parse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="74" column="42" lean-forward="true" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+              <folding>
+                <element signature="e#70#84#0" expanded="true" />
+                <marker date="1579416590553" expanded="true" signature="4030:4190" ph="INSERT INTO financial_exchange... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="swxml_parse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/swxml_parse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5157">
+              <caret line="259" column="22" lean-forward="true" selection-start-line="259" selection-start-column="22" selection-end-line="259" selection-end-column="22" />
+              <folding>
+                <marker date="1579570263372" expanded="true" signature="5817:5950" ph="INSERT INTO ticket_bill... " />
+                <marker date="1579570263372" expanded="true" signature="5974:6160" ph="INSERT INTO ticket_bill... " />
+                <marker date="1579570263372" expanded="true" signature="6194:6334" ph="INSERT INTO financial_exchange... " />
+                <marker date="1579570263372" expanded="true" signature="6359:6525" ph="INSERT INTO financial_exchange... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="update_bill_com.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/update_bill_com.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1377">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1575356406473" expanded="true" signature="682:755" ph="SELECT Gfmc ticket_bill" />
+                <marker date="1575356406473" expanded="true" signature="979:1052" ph="SELECT Xfmc ticket_bill" />
+                <marker date="1575356406473" expanded="true" signature="1154:1217" ph="SELECT id,co... dic_company" />
+                <marker date="1575356406473" expanded="true" signature="1242:1327" ph="UPDATE ticket_bill... " />
+                <marker date="1575356406473" expanded="true" signature="1352:1437" ph="UPDATE ticket_bill... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gouxiao_parse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gouxiao_parse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1575419197563" expanded="true" signature="2751:2911" ph="INSERT INTO financial_exchange... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="update_total.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/update_total.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-81">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1574653347639" expanded="true" signature="319:458" ph="SELECT Xf_id... " />
+                <marker date="1574653347639" expanded="true" signature="473:548" ph="INSERT INTO in_total... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="update_trade_com.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/update_trade_com.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1383">
+              <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+              <folding>
+                <marker date="1575270107727" expanded="true" signature="262:390" ph="SELECT DISTI... financial_exchange" />
+                <marker date="1575270107727" expanded="true" signature="413:541" ph="SELECT DISTI... financial_exchange" />
+                <marker date="1575270107727" expanded="true" signature="563:668" ph="SELECT DISTI... financial_exchange" />
+                <marker date="1575270107727" expanded="true" signature="1160:1223" ph="SELECT id,co... dic_company" />
+                <marker date="1575270107727" expanded="true" signature="1248:1382" ph="UPDATE financial_exchange... " />
+                <marker date="1575270107727" expanded="true" signature="1407:1541" ph="UPDATE financial_exchange... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../../out_data-master-82d389485dea73d30c77dc134483900e82c41312/卓创/price_by_day_factory.py" />
+        <option value="$PROJECT_DIR$/../../out_data-master-82d389485dea73d30c77dc134483900e82c41312/卓创/price_by_day_market.py" />
+        <option value="$PROJECT_DIR$/xsz_parse.py" />
+        <option value="$PROJECT_DIR$/swxls_parse.py" />
+        <option value="$PROJECT_DIR$/swxml_parse.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="changxing_invoice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="changxing_invoice" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="E:/Inner/Inner20200117/Inner" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.update_trade_com">
+    <configuration name="update_trade_com" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="changxing_invoice" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/update_trade_com.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="updb190327" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="changxing_invoice" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/updb190327.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="xsz_parse" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="changxing_invoice" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/xsz_parse.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.updb190327" />
+      <item index="1" class="java.lang.String" itemvalue="Python.xsz_parse" />
+      <item index="2" class="java.lang.String" itemvalue="Python.update_trade_com" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.update_trade_com" />
+        <item index="1" class="java.lang.String" itemvalue="Python.updb190327" />
+        <item index="2" class="java.lang.String" itemvalue="Python.xsz_parse" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="022f0c29-4152-4265-b9ee-e539ef3b58e9" name="Default" comment="" />
+      <created>1578639390508</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578639390508</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25266525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/updb190327.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <marker date="1578639297984" expanded="true" signature="220:285" ph="SELECT Spmc,... dic_good_type_bill" />
+            <marker date="1578639297984" expanded="true" signature="592:697" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1578639297984" expanded="true" signature="802:906" ph="UPDATE financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xsz_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5724">
+          <caret line="214" column="10" lean-forward="false" selection-start-line="214" selection-start-column="10" selection-end-line="214" selection-end-column="10" />
+          <folding>
+            <marker date="1579156094928" expanded="true" signature="6305:6457" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swxls_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#70#84#0" expanded="true" />
+            <marker date="1579416590553" expanded="true" signature="4030:4190" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gouxiao_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1575419197563" expanded="true" signature="2751:2911" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/update_trade_com.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2700">
+          <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+          <folding>
+            <marker date="1575270107727" expanded="true" signature="262:390" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1575270107727" expanded="true" signature="413:541" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1575270107727" expanded="true" signature="563:668" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1575270107727" expanded="true" signature="1160:1223" ph="SELECT id,co... dic_company" />
+            <marker date="1575270107727" expanded="true" signature="1248:1382" ph="UPDATE financial_exchange... " />
+            <marker date="1575270107727" expanded="true" signature="1407:1541" ph="UPDATE financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swxml_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5778">
+          <caret line="219" column="33" lean-forward="false" selection-start-line="219" selection-start-column="18" selection-end-line="219" selection-end-column="33" />
+          <folding>
+            <marker date="1579570263372" expanded="true" signature="5817:5950" ph="INSERT INTO ticket_bill... " />
+            <marker date="1579570263372" expanded="true" signature="5974:6160" ph="INSERT INTO ticket_bill... " />
+            <marker date="1579570263372" expanded="true" signature="6194:6334" ph="INSERT INTO financial_exchange... " />
+            <marker date="1579570263372" expanded="true" signature="6359:6525" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../out_data-master-82d389485dea73d30c77dc134483900e82c41312/卓创/price_by_day_factory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="35" column="23" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../out_data-master-82d389485dea73d30c77dc134483900e82c41312/卓创/price_by_day_market.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="37" column="4" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/updb190329.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/updb190327.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <marker date="1578639297984" expanded="true" signature="220:285" ph="SELECT Spmc,... dic_good_type_bill" />
+            <marker date="1578639297984" expanded="true" signature="592:697" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1578639297984" expanded="true" signature="802:906" ph="UPDATE financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xml_test.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gouxiao_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1575419197563" expanded="true" signature="2751:2911" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/update_bill_com.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1377">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1575356406473" expanded="true" signature="682:755" ph="SELECT Gfmc ticket_bill" />
+            <marker date="1575356406473" expanded="true" signature="979:1052" ph="SELECT Xfmc ticket_bill" />
+            <marker date="1575356406473" expanded="true" signature="1154:1217" ph="SELECT id,co... dic_company" />
+            <marker date="1575356406473" expanded="true" signature="1242:1327" ph="UPDATE ticket_bill... " />
+            <marker date="1575356406473" expanded="true" signature="1352:1437" ph="UPDATE ticket_bill... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/update_total.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1574653347639" expanded="true" signature="319:458" ph="SELECT Xf_id... " />
+            <marker date="1574653347639" expanded="true" signature="473:548" ph="INSERT INTO in_total... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swxml_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5157">
+          <caret line="259" column="22" lean-forward="true" selection-start-line="259" selection-start-column="22" selection-end-line="259" selection-end-column="22" />
+          <folding>
+            <marker date="1579570263372" expanded="true" signature="5817:5950" ph="INSERT INTO ticket_bill... " />
+            <marker date="1579570263372" expanded="true" signature="5974:6160" ph="INSERT INTO ticket_bill... " />
+            <marker date="1579570263372" expanded="true" signature="6194:6334" ph="INSERT INTO financial_exchange... " />
+            <marker date="1579570263372" expanded="true" signature="6359:6525" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swxls_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="74" column="42" lean-forward="true" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+          <folding>
+            <element signature="e#70#84#0" expanded="true" />
+            <marker date="1579416590553" expanded="true" signature="4030:4190" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xsz_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="45" column="65" lean-forward="false" selection-start-line="45" selection-start-column="59" selection-end-line="45" selection-end-column="65" />
+          <folding>
+            <marker date="1579156094928" expanded="true" signature="6305:6457" ph="INSERT INTO financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/update_trade_com.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1383">
+          <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+          <folding>
+            <marker date="1575270107727" expanded="true" signature="262:390" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1575270107727" expanded="true" signature="413:541" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1575270107727" expanded="true" signature="563:668" ph="SELECT DISTI... financial_exchange" />
+            <marker date="1575270107727" expanded="true" signature="1160:1223" ph="SELECT id,co... dic_company" />
+            <marker date="1575270107727" expanded="true" signature="1248:1382" ph="UPDATE financial_exchange... " />
+            <marker date="1575270107727" expanded="true" signature="1407:1541" ph="UPDATE financial_exchange... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
