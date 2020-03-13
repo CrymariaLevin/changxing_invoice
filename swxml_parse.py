@@ -11,8 +11,11 @@ import codecs
 import re
 import shutil
 
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_data', port=3306, charset='utf8')
+
 connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-                db='cxd_data', port=3306, charset='utf8')
+                db='cxd_test', port=3306, charset='utf8')
 cursor = connection.cursor()
 
 
@@ -43,7 +46,7 @@ def xml_parse(com, path):
                 data = etree.parse(path)
             except Exception as e:
                 print(str(e))
-                print('文件问题')
+                print('文件解析问题')
                 try:
                     copy_file(path, com)
                     # del_files(path)
@@ -77,6 +80,7 @@ def xml_parse(com, path):
             row.append(kprq)
             row.append(com)
             row.append(kj_name)
+            row.append(path)
             record.append(row)
     return record
 
@@ -124,11 +128,12 @@ def xml_parse_other(com, path):
         tmp.append(Kpr)
         tmp.append(Spmc)
         tmp.append(Jldw)
-        tmp.append(round(float(Dj), 2))
+        tmp.append(Dj)
         tmp.append(Sl)
         tmp.append(Je)
         tmp.append(Slv)
         tmp.append(Se)
+        tmp.append(path)
         reocrd.append(tmp)
     return reocrd
 
@@ -185,11 +190,11 @@ def gci(filepath):
 
 
 if __name__ == "__main__":
-    # path_list = gci('./SWXML')
-    path_list = gci('./二次导入')
+    path_list = gci('./SWXML')
+    # path_list = gci('./二次导入')
     # print(path_list)
     xml = []
-    excel = []
+    # excel = []
     for k, v in path_list.items():
         if not v:
             continue
@@ -197,18 +202,20 @@ if __name__ == "__main__":
             if 'xml' in path:
                 xml.append([k, path])
             else:
-                excel.append([k, path])
+                path = path.replace('.xls', '.xml')
+                # excel.append([k, path])
+                xml.append([k, path])
 
     # 发票表入库sql
-    bill_sql = "INSERT INTO ticket_bill (Lbdm,Fphm,Gfmc,Gfsh,Spmc,Je,Se,Kprq,Xfmc,kj_name) " \
-               "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    bill_sql = "INSERT INTO ticket_bill (Lbdm,Fphm,Gfmc,Gfsh,Spmc,Je,Se,Kprq,Xfmc,kj_name,Source) " \
+               "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     bill_sql_other = "INSERT INTO ticket_bill (Lbdm,Fphm,Gfmc,Gfsh,Gfyhzh,Gfdzdh,Xfmc,Kprq,kj_name,Spmc," \
-                     "Jldw,Dj,Sl,Je,Slv,Se) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                     "Jldw,Dj,Sl,Je,Slv,Se,Source) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     # 交易表入库sql
-    trade_sql = "INSERT INTO financial_exchange (Gf_company_name,exchange_good,Je,exchange_date,Xf_company_name) " \
-                "VALUES (%s,%s,%s,%s,%s)"
+    trade_sql = "INSERT INTO financial_exchange (Gf_company_name,exchange_good,Je,exchange_date,Xf_company_name,source) " \
+                "VALUES (%s,%s,%s,%s,%s,%s)"
     trade_sql_other = "INSERT INTO financial_exchange (Gf_company_name,Xf_company_name,exchange_date,exchange_good," \
-                      "Jldw,Dj,Sl,Je) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+                      "Jldw,Dj,Sl,Je,source) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
     for r in xml:
         print(r[0])
@@ -219,41 +226,41 @@ if __name__ == "__main__":
         if res[0][0] is None:
             res = xml_parse_other(r[0], r[1])
 
-            try:
-                check_time = int(res[0][7].translate(str.maketrans('', '', '-')))
-                if check_time > 20190501:  # 按需要筛选时间
-                    cursor.executemany(bill_sql_other, res)
-                else:
-                    continue
-            except:
-                try:
-                    check_time = int(res[0][7][:8])
-                    if check_time > 20190501:  # 按需要筛选时间
-                        cursor.executemany(bill_sql_other, res)
-                    else:
-                        continue
-                except:
-                    pass
+            # try:
+            #     check_time = int(res[0][7].translate(str.maketrans('', '', '-')))
+            #     if check_time > 20190501:  # 按需要筛选时间
+            #         cursor.executemany(bill_sql_other, res)
+            #     else:
+            #         continue
+            # except:
+            #     try:
+            #         check_time = int(res[0][7][:8])
+            #         if check_time > 20190501:  # 按需要筛选时间
+            #             cursor.executemany(bill_sql_other, res)
+            #         else:
+            #             continue
+            #     except:
+            #         pass
 
             # 处理入交易表数据
             trade_data = []
             for info in res:
-                try:
-                    check_time = int(res[0][7].translate(str.maketrans('', '', '-')))
-                except:
-                    check_time = int(res[0][7][:8])
-                if check_time < 20190501:  # 按需要筛选时间
-                    continue
+                # try:
+                #     check_time = int(res[0][7].translate(str.maketrans('', '', '-')))
+                # except:
+                #     check_time = int(res[0][7][:8])
+                # if check_time < 20190501:  # 按需要筛选时间
+                #     continue
 
-                tmp = [info[2], info[6], info[7], info[9], info[10], info[11], info[12], info[13]]
+                tmp = [info[2], info[6], info[7], info[9], info[10], info[11], info[12], info[13], r[1]]
                 trade_data.append(tmp)
             cursor.executemany(trade_sql_other, trade_data)
         else:
             bill_data=[]
             for info in res:
-                check_time = int(info[7].translate(str.maketrans('', '', '-')))
-                if check_time < 20190501:
-                    continue# 按需要筛选时间
+                # check_time = int(info[7].translate(str.maketrans('', '', '-')))
+                # if check_time < 20190501:
+                #     continue# 按需要筛选时间
                 bill_data.append(info)
             cursor.executemany(bill_sql, bill_data)
 
@@ -261,14 +268,15 @@ if __name__ == "__main__":
             trade_data = []
             for info in res:
 
-                check_time = int(info[7].translate(str.maketrans('', '', '-')))
-                if check_time < 20190501:  # 按需要筛选时间
-                    continue
+                # check_time = int(info[7].translate(str.maketrans('', '', '-')))
+                # if check_time < 20190501:  # 按需要筛选时间
+                #     continue
 
-                tmp = [info[2], info[4], info[5], info[7], info[8]]
+                tmp = [info[2], info[4], info[5], info[7], info[8], r[1]]
                 trade_data.append(tmp)
             cursor.executemany(trade_sql, trade_data)
         connection.commit()
+
         del_files(r[1])
 
 

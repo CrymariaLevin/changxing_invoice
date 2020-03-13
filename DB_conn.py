@@ -27,7 +27,7 @@ class MysqlPool(object):  # 设置数据库连接池和初始化
             "port": 3306,
             "user": 'root',
             "passwd": 'bigdata_oil',
-            "db": 'cxd_data',
+            "db": 'cxd_test',
             "charset": 'utf8'
         }
         self.pool = PooledDB(pymysql, mincached=mincached, maxcached=maxcached, maxconnections=maxconnections,

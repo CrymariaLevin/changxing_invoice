@@ -6,8 +6,8 @@ import pymysql
 import codecs
 import DB_conn as conn_db
 
-# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-#                 db='cxd_data', port=3306, charset='utf8')
+
+# 注意在这里改表名
 connection = conn_db.connection
 cursor = connection.cursor()
 
@@ -21,15 +21,15 @@ gfile = codecs.open('./files/billgcom191203.txt', 'wb', 'utf-8')
 
 
 # 获取无id购方企业
-# gfsql = "SELECT DISTINCT Gfmc FROM ticket_bill WHERE Gf_id IS NULL AND Gfmc IS NOT NULL LIMIT 1000" #数据太多加限制，多更几次
-gfsql = "SELECT Gfmc FROM ticket_bill WHERE Gf_id IS NULL AND Gfmc ='大连海益石油化工有限公司'"
+gfsql = "SELECT DISTINCT Gfmc FROM ticket_bill WHERE Gf_id IS NULL AND Kprq >= '2019-01-01' AND Gfmc IS NOT NULL" # LIMIT 1000" #数据太多加限制，多更几次
+# gfsql = "SELECT Gfmc FROM ticket_bill WHERE Gf_id IS NULL AND Gfmc ='大连海益石油化工有限公司'"
 cursor.execute(gfsql)
 gfdata = cursor.fetchall()
 print(len(gfdata))
 gfcom = [i[0] for i in gfdata]
 # 获取无id销方企业
-# xfsql = "SELECT DISTINCT Xfmc FROM ticket_bill WHERE Xf_id IS NULL AND Xfmc IS NOT NULL LIMIT 1000"
-xfsql = "SELECT Xfmc FROM ticket_bill WHERE Xf_id IS NULL AND Xfmc ='大连海益石油化工有限公司'"
+xfsql = "SELECT DISTINCT Xfmc FROM ticket_bill WHERE Xf_id IS NULL AND Kprq >= '2019-01-01' AND Xfmc IS NOT NULL" #  LIMIT 1000"
+# xfsql = "SELECT Xfmc FROM ticket_bill WHERE Xf_id IS NULL AND Xfmc ='大连海益石油化工有限公司'"
 cursor.execute(xfsql)
 xfdata = cursor.fetchall()
 xfcom = [i[0] for i in xfdata]
@@ -47,7 +47,7 @@ updategf = "UPDATE ticket_bill SET Gf_id = %s,Gf_province_id = %s " \
 def updatex():
     print('共%d家销方企业' % len(xfcom))
     count = 1
-    record = []
+    # record = []
     for x in xfcom:
         print('查询第%d家：%s ' % (count, x))
         cursor.execute(comsql % x)
@@ -61,6 +61,7 @@ def updatex():
             # record.append((id, provinceid, x))
             record = (id, provinceid, x)
             cursor.execute(updatexf, record)
+            # connection.commit()
             # num = cursor.execute(updatexf % (id, provinceid, x))
             # if num != 0:
             #     print('%s更新成功' % x)
@@ -72,12 +73,13 @@ def updatex():
         count += 1
     # cursor.executemany(updatexf, record)
     connection.commit()
+    connection.close()
 
 
 def updateg():
     print('共%d家购方企业' % len(gfcom))
     count = 1
-    record = []
+    # record = []
     for g in gfcom:
         print('查询第%d家：%s ' % (count, g))
         cursor.execute(comsql % g)
@@ -91,6 +93,7 @@ def updateg():
             # record.append((id, provinceid, g))
             record = (id, provinceid, g)
             cursor.execute(updategf, record)
+            # connection.commit()
             # num = cursor.execute(updategf % (id, provinceid, g))
             # if num != 0:
             #     print('%s更新成功' % g)
@@ -98,15 +101,20 @@ def updateg():
             # else:
             #     gfile.wriet(g + '\n')
         else:
-            nfile.write(g + '\n')
+            try:
+                nfile.write(g + '\n')
+            except TypeError:
+                print('无效企业')
+                continue
         count += 1
     # cursor.executemany(updategf, record)
     connection.commit()
+    connection.close()
 
 
 if __name__ == '__main__':
-    print('开始更新销方企业')
-    updatex()
+    # print('开始更新销方企业')
+    # updatex()
     print('开始更新购方企业')
     updateg()
 

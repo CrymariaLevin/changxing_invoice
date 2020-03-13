@@ -37,6 +37,12 @@ UPDATE in_total SET gmv = income,gpm = income WHERE cost IS NULL;
 TRUNCATE TABLE in_com_relation;
 # 导入新数据
 INSERT INTO in_com_relation(name,com_id,sy_name,sy_id,deal_type,Gmv,`year`)
+SELECT Xfmc,Xf_id,Gfmc,Gf_id,0,ROUND(SUM(Je),2),'2020' FROM ticket_bill WHERE LEFT(Kprq,4) = '2020' GROUP BY Xfmc,Gfmc ORDER BY Xfmc;
+INSERT INTO in_com_relation(name,com_id,sy_name,sy_id,deal_type,Gmv,`year`)
+SELECT Gf_company_name,Gf_company_id,Xf_company_name,Xf_company_id,1,ROUND(SUM(Je),2),'2020' FROM financial_exchange WHERE `year` = '2020' and Xf_com_group = 0
+AND Gf_com_group = 1 GROUP BY Xf_company_name,Gf_company_name ORDER BY Gf_company_name;
+
+INSERT INTO in_com_relation(name,com_id,sy_name,sy_id,deal_type,Gmv,`year`)
 SELECT Xfmc,Xf_id,Gfmc,Gf_id,0,ROUND(SUM(Je),2),'2019' FROM ticket_bill WHERE LEFT(Kprq,4) = '2019' GROUP BY Xfmc,Gfmc ORDER BY Xfmc;
 INSERT INTO in_com_relation(name,com_id,sy_name,sy_id,deal_type,Gmv,`year`)
 SELECT Gf_company_name,Gf_company_id,Xf_company_name,Xf_company_id,1,ROUND(SUM(Je),2),'2019' FROM financial_exchange WHERE `year` = '2019' and Xf_com_group = 0

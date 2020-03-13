@@ -5,15 +5,18 @@
 import pymysql
 import codecs
 
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_data', port=3306, charset='utf8')
+
 connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-                db='cxd_data', port=3306, charset='utf8')
+                db='cxd_test', port=3306, charset='utf8')
 cursor = connection.cursor()
 
 # 获取无id销方企业
-xfsql = "SELECT DISTINCT Xf_company_name FROM financial_exchange WHERE Xf_company_id IS NULL " \
+xfsql = "SELECT DISTINCT Xf_company_name FROM financial_exchange WHERE Xf_company_id IS NULL AND exchange_date >= '2019-01-01'" \
         "AND Xf_company_name IS NOT NULL"
 # 获取无id购方企业
-gfsql = "SELECT DISTINCT Gf_company_name FROM financial_exchange WHERE Gf_company_id IS NULL " \
+gfsql = "SELECT DISTINCT Gf_company_name FROM financial_exchange WHERE Gf_company_id IS NULL AND exchange_date >= '2019-01-01'" \
         "AND Gf_company_name IS NOT NULL"
 # 获取无油品类型
 oilsql = "SELECT DISTINCT exchange_good FROM financial_exchange WHERE exchange_good IS NOT NULL AND main_id IS NULL"
@@ -68,6 +71,7 @@ def updatex():
             nfile.write(x + '\n')
         count += 1
     connection.commit()
+    connection.close()
 
 
 def updateg():
@@ -93,6 +97,7 @@ def updateg():
             nfile.write(g + '\n')
         count += 1
     connection.commit()
+    connection.close()
 
 
 if __name__ == '__main__':
