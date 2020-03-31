@@ -14,7 +14,7 @@ connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oi
 
 cursor = connection.cursor()
 
-oil_key = ['油', '沥青', '92', '95', '0', '35', '10']
+oil_key = ['油', '沥青', '92', '95', '0', '35', '10', '燃料', '油气', '苯', '热载体']
 trade_key = ['购', '销']
 
 docxlist = {}
@@ -81,24 +81,41 @@ def data_merge(com, original_data, path):
     result = []
     oil_list = []
     com_list = []
+    if len(original_data[0])<28: #文件结构错误
+        return -1
     if '购' in original_data[0][6]:
         flag = 0    # 0:购 1:销
     else:
         flag = 1
     for record in original_data:
+        # 解析油品名称
         if any(key in record[8] for key in oil_key) and '公司' not in record[8] and '加油' not in record[8]:
             # for r in record[8].replace(' ', '').split('-'):
-            for r in record[8].replace('--', '').replace('-', '').split(' '):
+            for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
                 if any(key in r for key in oil_key):
                     oil_list.append(r)
+                    # com_list.append(r)
+        # 解析公司名称
         elif '公司' in record[8] or '加油站' in record[8]:
-            for r in record[8].replace('--', '').replace('-', '').split(' '):
+            for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
                 if '公司' in r or '加油站' in r:
+                    com_list.append(r)
+        # 解析特殊公司的名称（不含‘公司’和‘加油站’关键字的）
+        elif '账款' in record[8] and '公司' not in record[8] and '加油' not in record[8]:
+            for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
+                if '账款' not in r and len(r) > 1:
                     com_list.append(r)
     oil_num = len(oil_list)
     com_num = len(com_list)
-    if len(oil_list) < 1 or len(com_list) < 1: # 解析失败
-        return -1
+    if len(oil_list) < 1 or len(com_list) < 1: # 对应解析失败
+        if flag == 0:
+            print('oil_num:', oil_num, oil_list)
+            print('com_num:', com_num, com_list)
+            print('公司名称解析失败')
+            return -2
+        else:
+            print('此记录为卖出记录，不予统计')
+            return 0
     elif oil_num == 1 and com_num == 1:   # 油品公司一一对应，最简单的匹配
         if flag == 0:
             xf = name_filter(com_list[0])
@@ -129,9 +146,11 @@ def data_merge(com, original_data, path):
             # gf = com_list[0]
         date = original_data[0][4]
         for m in oil_list:
+            oil_ori = []
             for n in original_data:
-                if m in n[8]:
-                    spmc = oil_list[0]
+                if m in n[8] and n[8] not in oil_ori:
+                    spmc = m
+                    oil_ori.append(n[8])
                     Je = n[16]
                     Sl = n[25] if n[25] else None
                     Dj = n[26] if n[26] else None
@@ -173,7 +192,7 @@ def data_merge(com, original_data, path):
         print('oil_num:',oil_num,oil_list)
         print('com_num:',com_num,com_list)
         print('合并记账，暂时没想到好方法,可先将此文件做记录，后续处理')
-        return -1
+        return -2
     return result
 
 def main():
@@ -184,7 +203,7 @@ def main():
         '17借方金额', '18贷方金额', '19制单人', '20审核人', '21过账人', '22结算方式', '23结算号',
          '24结算日期', '25数量', '26单价', '27附件数']
         """
-    path_list = gci('XSZ')
+    path_list = gci('2020第一批/XSZ')
     error_list = []
     error_data = []
     update_list = []
@@ -217,9 +236,12 @@ def main():
                     for r in temp_data:
                         try:
                             middle_data = data_merge(k, r, file_path)
-                            if middle_data == -1:
+                            if middle_data == -2:
                                 error_data.append([r, file_path])
                                 match_error_list.append(file_path)  # 添加没想到好方法文件的路径信息(合并记账）
+                                continue
+                            elif middle_data == -1: # 解析失败企业
+                                error_list.append(file_path)
                                 continue
                             elif middle_data == 0: # 该记录为卖出记录
                                 continue
@@ -235,12 +257,13 @@ def main():
     # print('err:',error_list)
     # print('update:',update_list)
 
-    # 上传到数据库
+    # 上传到数据库, 单独取录入错误的数据条数时要注释掉
     # 交易表入库sql
     # trade_sql = "INSERT INTO financial_exchange (Xf_company_name,Gf_company_name,exchange_date,exchange_good,Je,Sl,Dj,source" \
     #             ") VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     # cursor.executemany(trade_sql, update_list)
     # connection.commit()
+
     no_match_list = {}
     for com in match_error_list:
         if com not in no_match_list.keys():

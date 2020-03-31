@@ -168,6 +168,7 @@ def gci(filepath):
     return docxlist
 
 
+
 if __name__ == "__main__":
     # path_list = gci('2020第一批/国税发票明细')
     path_list = gci('2020第一批/剩余发票明细')
@@ -180,11 +181,13 @@ if __name__ == "__main__":
                 "Sl,Je,source) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
     for com, p in path_list.items():
-        print(com)
+        # print(com)
         for path in p:
+            print('开始录入文件：', path)
             fp_data = read_xls(path)
             if fp_data == 0:
-                error_list.append(path)
+                # error_list.append(path)
+                error_list.append(com)
                 continue
             if '汇通天下' in com and '销' in path:
                 fp = parse_data_large(com, fp_data, path)
@@ -201,14 +204,18 @@ if __name__ == "__main__":
                 #     continue
                 tmp = [info[2], info[4], info[5], info[6], info[8], info[9], info[10], info[11], path]
                 trade_data.append(tmp)
-            print(trade_data)
+            # print(trade_data)
         try:
             cursor.executemany(trade_sql, trade_data)
         except Exception as e:
             print(str(e))
         connection.commit()
 
-    print('结构错误企业：\n', error_list)
+    reload_list = []
+    for com in error_list:
+        if com not in reload_list:
+            reload_list.append(com)
+    print('结构错误企业：\n', reload_list)
 
 
 

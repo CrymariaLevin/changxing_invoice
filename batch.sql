@@ -4,6 +4,16 @@ UPDATE financial_exchange SET exchangetype=1 WHERE Gf_com_group=1 and exchange_d
 UPDATE financial_exchange SET exchangetype=0 WHERE Xf_com_group=1 and exchange_date>'2019-01-01' ;
 UPDATE financial_exchange SET exchangetype=1 WHERE  Xf_company_name = '恒力石化（大连）炼化有限公司';
 
+# 替换不规范的括号
+update financial_exchange set Xf_company_name=REPLACE(Xf_company_name,'(','（');
+update financial_exchange set Gf_company_name=REPLACE(Gf_company_name,'(','（');
+update financial_exchange set Xf_company_name=REPLACE(Xf_company_name,')','）');
+update financial_exchange set Gf_company_name=REPLACE(Gf_company_name,')','）');
+update ticket_bill set Gfmc=REPLACE(Gfmc,')','）');
+update ticket_bill set Gfmc=REPLACE(Gfmc,'(','（');
+update ticket_bill set Xfmc=REPLACE(Xfmc,')','）');
+update ticket_bill set Xfmc=REPLACE(Xfmc,'(','（');
+
 #更新产品名称和编码
 DELETE FROM financial_exchange where Xf_company_name LIKE '%暂估%' or Gf_company_name LIKE '%暂估%';
 UPDATE financial_exchange SET spec_id = CONCAT('0', spec_id) WHERE LENGTH(spec_id)=5;
