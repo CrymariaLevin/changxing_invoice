@@ -1,10 +1,4 @@
-﻿#更新exchangetype字段
-#gf是岛内的，就是1，xf是岛内的，就是0, 两边都是岛内时以上游为准，即只要上游（xf）是岛内的exchangetype就等于0
-UPDATE financial_exchange SET exchangetype=1 WHERE Gf_com_group=1 and exchange_date>'2019-01-01';
-UPDATE financial_exchange SET exchangetype=0 WHERE Xf_com_group=1 and exchange_date>'2019-01-01' ;
-UPDATE financial_exchange SET exchangetype=1 WHERE  Xf_company_name = '恒力石化（大连）炼化有限公司';
-
-# 替换不规范的括号
+﻿# 替换不规范的括号，全部换成中文括号
 update financial_exchange set Xf_company_name=REPLACE(Xf_company_name,'(','（');
 update financial_exchange set Gf_company_name=REPLACE(Gf_company_name,'(','（');
 update financial_exchange set Xf_company_name=REPLACE(Xf_company_name,')','）');
@@ -13,6 +7,12 @@ update ticket_bill set Gfmc=REPLACE(Gfmc,')','）');
 update ticket_bill set Gfmc=REPLACE(Gfmc,'(','（');
 update ticket_bill set Xfmc=REPLACE(Xfmc,')','）');
 update ticket_bill set Xfmc=REPLACE(Xfmc,'(','（');
+
+#更新exchangetype字段
+#gf是岛内的，就是1，xf是岛内的，就是0, 两边都是岛内时以上游为准，即只要上游（xf）是岛内的exchangetype就等于0
+UPDATE financial_exchange SET exchangetype=1 WHERE Gf_com_group=1 and exchange_date>'2019-01-01';
+UPDATE financial_exchange SET exchangetype=0 WHERE Xf_com_group=1 and exchange_date>'2019-01-01' ;
+UPDATE financial_exchange SET exchangetype=1 WHERE  Xf_company_name = '恒力石化（大连）炼化有限公司';
 
 #更新产品名称和编码
 DELETE FROM financial_exchange where Xf_company_name LIKE '%暂估%' or Gf_company_name LIKE '%暂估%';

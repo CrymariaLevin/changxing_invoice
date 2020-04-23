@@ -2,19 +2,22 @@
 import pymysql
 import os
 import xlrd
-# import pretty_errors
+import DB_conn as conn_db
 
 # 序时账里只取买入的数据
 
 # connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
 #                 db='cxd_data', port=3306, charset='utf8')
 
-connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-                db='cxd_test', port=3306, charset='utf8')
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_test', port=3306, charset='utf8')
 
+connection = conn_db.connection
 cursor = connection.cursor()
 
-oil_key = ['油', '沥青', '92', '95', '0', '35', '10', '燃料', '油气', '苯', '热载体']
+oil_key = ['油', '沥青', '92', '95', '0', '35', '燃料', '油气', '苯', '热载体', '烯', '醚', '醇', '天然气', '液化',\
+           '烷', '烃', '碳', 'MTBE', '剂', '脂', '酚', '酯', '原料']
+com_key = ['公司', '加油', '厂', '气站', 'LTD', 'CO']
 trade_key = ['购', '销']
 
 docxlist = {}
@@ -89,19 +92,23 @@ def data_merge(com, original_data, path):
         flag = 1
     for record in original_data:
         # 解析油品名称
-        if any(key in record[8] for key in oil_key) and '公司' not in record[8] and '加油' not in record[8]:
+        # if any(key in record[8] for key in oil_key) and '公司' not in record[8] and '加油' not in record[8] and '厂' not in record[8]:
+        if any(key in record[8] for key in oil_key) and all(key not in record[8] for key in com_key):
             # for r in record[8].replace(' ', '').split('-'):
-            for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
-                if any(key in r for key in oil_key):
-                    oil_list.append(r)
+            # for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
+            r = record[8].replace('库存商品 -', '').strip()
+            if any(key in r for key in oil_key):
+                oil_list.append(r)
                     # com_list.append(r)
         # 解析公司名称
-        elif '公司' in record[8] or '加油站' in record[8]:
+        # elif '公司' in record[8] or '加油站' in record[8] or '厂' in record[8]:
+        elif any(key in record[8] for key in com_key):
             for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
-                if '公司' in r or '加油站' in r:
+                if any(key in r for key in com_key):
                     com_list.append(r)
-        # 解析特殊公司的名称（不含‘公司’和‘加油站’关键字的）
-        elif '账款' in record[8] and '公司' not in record[8] and '加油' not in record[8]:
+        # 解析特殊公司的名称（不含任何公司相关的关键字）
+        # elif '账款' in record[8] and '公司' not in record[8] and '加油' not in record[8] and '厂' not in record[8]:
+        elif '账款' in record[8] and all(key not in record[8] for key in com_key):
             for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
                 if '账款' not in r and len(r) > 1:
                     com_list.append(r)
@@ -116,7 +123,7 @@ def data_merge(com, original_data, path):
         else:
             print('此记录为卖出记录，不予统计')
             return 0
-    elif oil_num == 1 and com_num == 1:   # 油品公司一一对应，最简单的匹配
+    elif oil_num == 1 and com_num == 1:   # 油品公司一对一对应，最简单的匹配
         if flag == 0:
             xf = name_filter(com_list[0])
             gf = name_filter(com)
@@ -188,7 +195,13 @@ def data_merge(com, original_data, path):
         for i in range(len(price)):
             row = title[i] + price[i]
             result.append(tuple(row))
-    else:   # 多个油品对应多家公司，油品数目与公司数目可能不等
+    else:   # 多个油品对应多家公司，油品数目与公司数目可能不等。或者一个产品对应多个公司
+        if flag == 0:
+            # xf = name_filter(com_list[0])
+            gf = name_filter(com)
+        else:
+            print('此记录为卖出记录，不予统计')
+            return 0
         print('oil_num:',oil_num,oil_list)
         print('com_num:',com_num,com_list)
         print('合并记账，暂时没想到好方法,可先将此文件做记录，后续处理')
@@ -203,7 +216,7 @@ def main():
         '17借方金额', '18贷方金额', '19制单人', '20审核人', '21过账人', '22结算方式', '23结算号',
          '24结算日期', '25数量', '26单价', '27附件数']
         """
-    path_list = gci('2020第一批/XSZ')
+    path_list = gci('./XSZ')
     error_list = []
     error_data = []
     update_list = []
@@ -229,7 +242,9 @@ def main():
                         r = r + [index, ]
                         if temp and r[4]:  # 判断是否是新账目(按日期）
                             if any(key in temp[0][6] for key in trade_key):  # 判断是否是购销
-                                if any(key in temp[0][8] for key in oil_key) and '公司' not in temp[0][8]:  # 是否包含油品
+                                # if any(key in temp[0][8] for key in oil_key) and '公司' not in temp[0][8] and '加油' not in temp[0][8] \
+                                #         and '厂' not in temp[0][8]:  # 是否包含油品
+                                if any(key in temp[0][8] for key in oil_key) and all(key not in temp[0][8] for key in com_key):
                                     temp_data.append(temp)
                             temp = []
                         temp.append(r)
@@ -259,10 +274,10 @@ def main():
 
     # 上传到数据库, 单独取录入错误的数据条数时要注释掉
     # 交易表入库sql
-    # trade_sql = "INSERT INTO financial_exchange (Xf_company_name,Gf_company_name,exchange_date,exchange_good,Je,Sl,Dj,source" \
-    #             ") VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-    # cursor.executemany(trade_sql, update_list)
-    # connection.commit()
+    trade_sql = "INSERT INTO financial_exchange (Xf_company_name,Gf_company_name,exchange_date,exchange_good,Je,Sl,Dj,source" \
+                ") VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    cursor.executemany(trade_sql, update_list)
+    connection.commit()
 
     no_match_list = {}
     for com in match_error_list:

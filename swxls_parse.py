@@ -8,12 +8,17 @@ import pymysql
 import os
 import xlrd
 from decimal import Decimal
+import DB_conn as conn_db
 
 # connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
 #                 db='cxd_data', port=3306, charset='utf8')
 
-connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-                db='cxd_test', port=3306, charset='utf8')
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_test', port=3306, charset='utf8')
+# cursor = connection.cursor()
+
+# 如果使用连接池，注意在这里对应的import库改表名
+connection = conn_db.connection
 cursor = connection.cursor()
 
 
@@ -117,8 +122,8 @@ def del_files(path):
 
 
 if __name__ == "__main__":
-    # path_list = gci('./SWEXCEL')
-    path_list = gci('./SWXML')
+    path_list = gci('./SWEXCEL')
+    # path_list = gci('./SWXML')
     # path_list = gci('./有问题的xls')
     xml = []
     excel = []

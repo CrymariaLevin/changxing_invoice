@@ -170,8 +170,8 @@ def gci(filepath):
 
 
 if __name__ == "__main__":
-    # path_list = gci('2020第一批/国税发票明细')
-    path_list = gci('2020第一批/剩余发票明细')
+    path_list = gci('2020第一批/国税发票明细')
+    # path_list = gci('2020第一批/剩余发票明细')
     error_list = []
     # print(path_list)
 
@@ -205,11 +205,11 @@ if __name__ == "__main__":
                 tmp = [info[2], info[4], info[5], info[6], info[8], info[9], info[10], info[11], path]
                 trade_data.append(tmp)
             # print(trade_data)
-        try:
-            cursor.executemany(trade_sql, trade_data)
-        except Exception as e:
-            print(str(e))
-        connection.commit()
+            try:
+                cursor.executemany(trade_sql, trade_data)
+            except Exception as e:
+                print(str(e))
+            connection.commit()
 
     reload_list = []
     for com in error_list:

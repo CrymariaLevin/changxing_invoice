@@ -50,14 +50,16 @@ def updatex():
     # record = []
     for x in xfcom:
         print('查询第%d家：%s ' % (count, x))
+        print(comsql % x)
         cursor.execute(comsql % x)
         data = cursor.fetchall()
+        # print(data)
         if data:
             print(data)
             id = data[0][0] if data[0][0] else ''
             provinceid = data[0][1] if str(data[0][1]) else ''
             print(id, provinceid)
-            print('更新 ', x)
+            print('更新销方 ', x)
             # record.append((id, provinceid, x))
             record = (id, provinceid, x)
             cursor.execute(updatexf, record)
@@ -82,6 +84,7 @@ def updateg():
     # record = []
     for g in gfcom:
         print('查询第%d家：%s ' % (count, g))
+        print(comsql % g)
         cursor.execute(comsql % g)
         data = cursor.fetchall()
         if data:
@@ -89,7 +92,7 @@ def updateg():
             id = data[0][0] if data[0][0] else ''
             provinceid = data[0][1] if str(data[0][1]) else ''
             print(id, provinceid)
-            print('更新 ', g)
+            print('更新购方 ', g)
             # record.append((id, provinceid, g))
             record = (id, provinceid, g)
             cursor.execute(updategf, record)
@@ -113,8 +116,8 @@ def updateg():
 
 
 if __name__ == '__main__':
-    # print('开始更新销方企业')
-    # updatex()
+    print('开始更新销方企业')
+    updatex()
     print('开始更新购方企业')
     updateg()
 

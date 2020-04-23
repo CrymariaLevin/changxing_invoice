@@ -12,7 +12,7 @@ class MysqlPool(object):  # 设置数据库连接池和初始化
     """
 
     def __init__(self, mincached=5, maxcached=14,
-                 maxconnections=244, blocking=True, maxshared=0):
+                 maxconnections=1000, blocking=True, maxshared=0):
         """
             生成MySQL数据库连接池
         :param mincached: 最少的空闲连接数，如果空闲连接数小于这个数，pool会创建一个新的连接
