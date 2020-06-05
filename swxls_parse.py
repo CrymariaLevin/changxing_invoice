@@ -8,9 +8,17 @@ import pymysql
 import os
 import xlrd
 from decimal import Decimal
+import DB_conn as conn_db
 
-connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-                db='cxd_data', port=3306, charset='utf8')
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_data', port=3306, charset='utf8')
+
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_test', port=3306, charset='utf8')
+# cursor = connection.cursor()
+
+# 如果使用连接池，注意在这里对应的import库改表名
+connection = conn_db.connection
 cursor = connection.cursor()
 
 
@@ -55,7 +63,7 @@ def gci(filepath):
     return docxlist
 
 
-def parse_data(com, info_data):
+def parse_data(com, info_data, path):
     """
     发票1：
     ['0发票代码', '1发票号码', '2购方企业名称', '3购方税号', '4银行帐号', '5地址电话', '6开票日期',
@@ -102,7 +110,7 @@ def parse_data(com, info_data):
             Slv = fp_info[15]
             Se = fp_info[16]
         record.append([Lbdm, Fphm, Gfmc, Gfsh, Gfyhzh, Gfdzdh,
-                       Kprq, Spmc, Ggxh, Jldw, Sl, Dj, Je, Slv, Se, Xfmc])
+                       Kprq, Spmc, Ggxh, Jldw, Sl, Dj, Je, Slv, Se, Xfmc, path])
     return record
 
 def del_files(path):
@@ -115,6 +123,7 @@ def del_files(path):
 
 if __name__ == "__main__":
     path_list = gci('./SWEXCEL')
+    # path_list = gci('./SWXML')
     # path_list = gci('./有问题的xls')
     xml = []
     excel = []
@@ -137,32 +146,32 @@ if __name__ == "__main__":
                     excel.append([k, path])
 
     # 发票表入库sql
-    bill_sql = "INSERT INTO ticket_bill (Lbdm,Fphm,Gfmc,Gfsh,Gfyhzh,Gfdzdh,Kprq,Spmc,Ggxh,Jldw,Sl,Dj,Je,Slv,Se,Xfmc) " \
-               "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    bill_sql = "INSERT INTO ticket_bill (Lbdm,Fphm,Gfmc,Gfsh,Gfyhzh,Gfdzdh,Kprq,Spmc,Ggxh,Jldw,Sl,Dj,Je,Slv,Se,Xfmc,Source) " \
+               "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     
     # 交易表入库sql
     trade_sql = "INSERT INTO financial_exchange (Gf_company_name,exchange_date,exchange_good,Jldw,Sl,Dj,Je," \
-                "Xf_company_name) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+                "Xf_company_name,source) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
-    # for r in excel:
-    #     print(r[1])
-    #     fp_data = read_xls(r[1])
-    #     fp = parse_data(r[0], fp_data)
-    #     try:
-    #         fp = parse_data(r[0], fp_data)
-    #     except Exception as e:
-    #         print(str(e))
-    #         print('问题文件：',r[1])
-    #         break
-    #     cursor.executemany(bill_sql, fp)
+    for r in excel:
+        print(r[1])
+        fp_data = read_xls(r[1])
+        # fp = parse_data(r[0], fp_data)
+        try:
+            fp = parse_data(r[0], fp_data, r[1])
+        except Exception as e:
+            print(str(e))
+            print('问题文件：',r[1])
+            break
+        cursor.executemany(bill_sql, fp)
 
         #处理入交易表数据
         trade_data = []
         for info in fp:
-            check_time = int(info[6].translate(str.maketrans('', '', '-')))
-            if check_time < 20190501: # 按需要筛选时间
-                continue
-            tmp = [info[2], info[6], info[7], info[9], info[10], info[11], info[12], info[15]]
+            # check_time = int(info[6].translate(str.maketrans('', '', '-')))
+            # if check_time < 20190501: # 按需要筛选时间
+            #     continue
+            tmp = [info[2], info[6], info[7], info[9], info[10], info[11], info[12], info[15] ,r[1]]
             trade_data.append(tmp)
         print(trade_data)
         cursor.executemany(trade_sql, trade_data)
@@ -174,9 +183,9 @@ if __name__ == "__main__":
         print(r[1])
         fp_data = read_xls(r[1], 1)
         #print(r[1])
-        fp = parse_data(r[0], fp_data)
+        # fp = parse_data(r[0], fp_data)
         try:
-            fp = parse_data(r[0], fp_data)
+            fp = parse_data(r[0], fp_data, r[1])
         except Exception as e:
             print(str(e))
             print('问题文件：',r[1])
@@ -187,10 +196,10 @@ if __name__ == "__main__":
         trade_data = []
         for info in fp:
             # print(info)
-            check_time = int(info[6].translate(str.maketrans('', '', '-')))
-            if check_time < 20190501:  # 按需要筛选时间
-                continue
-            tmp = [info[2], info[6], info[7], info[9], info[10], info[11], info[12], info[15]]
+            # check_time = int(info[6].translate(str.maketrans('', '', '-')))
+            # if check_time < 20190501:  # 按需要筛选时间
+            #     continue
+            tmp = [info[2], info[6], info[7], info[9], info[10], info[11], info[12], info[15], r[1]]
             trade_data.append(tmp)
         print(trade_data)
         cursor.executemany(trade_sql, trade_data)

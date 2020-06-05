@@ -1,8 +1,11 @@
 # -*-coding:utf-8-*-
 import pymysql
 
+# connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
+#                 db='cxd_data', port=3306, charset='utf8')
+
 connection = pymysql.connect(host='39.105.9.20', user='root', passwd='bigdata_oil',
-                db='cxd_data', port=3306, charset='utf8')
+                db='cxd_test', port=3306, charset='utf8')
 cursor = connection.cursor()
 
 def oil_info(good):
