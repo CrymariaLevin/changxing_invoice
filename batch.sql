@@ -8,7 +8,11 @@ update ticket_bill set Gfmc=REPLACE(Gfmc,'(','（');
 update ticket_bill set Xfmc=REPLACE(Xfmc,')','）');
 update ticket_bill set Xfmc=REPLACE(Xfmc,'(','（');
 
+<<<<<<< HEAD
 #更新exchangetype字段，注意改日期
+=======
+#更新exchangetype字段
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
 #gf是岛内的，就是1，xf是岛内的，就是0, 两边都是岛内时以上游为准，即只要上游（xf）是岛内的exchangetype就等于0
 UPDATE financial_exchange SET exchangetype=1 WHERE Gf_com_group=1 and exchange_date>'2019-01-01';
 UPDATE financial_exchange SET exchangetype=0 WHERE Xf_com_group=1 and exchange_date>'2019-01-01' ;

@@ -65,7 +65,11 @@ def updatex():
             # record.append((id, provinceid, x))
             record = (id, provinceid, x)
             cursor.execute(updatexf, record)
+<<<<<<< HEAD
             connection.commit()
+=======
+            # connection.commit()
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
             # num = cursor.execute(updatexf % (id, provinceid, x))
             # if num != 0:
             #     print('%s更新成功' % x)
@@ -76,7 +80,11 @@ def updatex():
             nfile.write(x + '\n')
         count += 1
     # cursor.executemany(updatexf, record)
+<<<<<<< HEAD
     # connection.commit()
+=======
+    connection.commit()
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     connection.close()
 
 
@@ -98,7 +106,11 @@ def updateg():
             # record.append((id, provinceid, g))
             record = (id, provinceid, g)
             cursor.execute(updategf, record)
+<<<<<<< HEAD
             connection.commit()
+=======
+            # connection.commit()
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
             # num = cursor.execute(updategf % (id, provinceid, g))
             # if num != 0:
             #     print('%s更新成功' % g)
@@ -113,7 +125,11 @@ def updateg():
                 continue
         count += 1
     # cursor.executemany(updategf, record)
+<<<<<<< HEAD
     # connection.commit()
+=======
+    connection.commit()
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     connection.close()
 
 

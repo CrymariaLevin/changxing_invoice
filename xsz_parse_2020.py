@@ -17,7 +17,11 @@ cursor = connection.cursor()
 
 oil_key = ['油', '沥青', '92', '95', '0', '35', '燃料', '油气', '苯', '热载体', '烯', '醚', '醇', '天然气', '液化',\
            '烷', '烃', '碳', 'MTBE', '剂', '脂', '酚', '酯', '原料']
+<<<<<<< HEAD
 com_key = ['公司', '加油', '厂', '气站', '经销处', '供应处', 'LTD', 'CO', 'LIMITED']
+=======
+com_key = ['公司', '加油', '厂', '气站', 'LTD', 'CO']
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
 trade_key = ['购', '销']
 
 docxlist = {}
@@ -84,7 +88,11 @@ def data_merge(com, original_data, path):
     result = []
     oil_list = []
     com_list = []
+<<<<<<< HEAD
     if len(original_data[0])<27: #文件结构错误
+=======
+    if len(original_data[0])<28: #文件结构错误
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
         return -1
     if '购' in original_data[0][6]:
         flag = 0    # 0:购 1:销
@@ -112,9 +120,12 @@ def data_merge(com, original_data, path):
             for r in record[8].replace(' -- ', ' - ').replace(' ', '').split('-'):
                 if '账款' not in r and len(r) > 1:
                     com_list.append(r)
+<<<<<<< HEAD
         if any(key in record[12] for key in com_key) and len(com_list) < 1:  # 个别企业记串列
             com_list.append(record[12])
 
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     oil_num = len(oil_list)
     com_num = len(com_list)
     if len(oil_list) < 1 or len(com_list) < 1: # 对应解析失败
@@ -126,7 +137,11 @@ def data_merge(com, original_data, path):
         else:
             print('此记录为卖出记录，不予统计')
             return 0
+<<<<<<< HEAD
     elif oil_num == 1 and com_num == 1:   # 油品公司一对一单个对应，最简单的匹配
+=======
+    elif oil_num == 1 and com_num == 1:   # 油品公司一对一对应，最简单的匹配
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
         if flag == 0:
             xf = name_filter(com_list[0])
             gf = name_filter(com)
@@ -139,8 +154,11 @@ def data_merge(com, original_data, path):
         spmc = oil_list[0]
         Je = original_data[0][16]
         Sl = original_data[0][25] if original_data[0][25] else None
+<<<<<<< HEAD
         if ',' in str(Sl):
             Sl = Sl.replace(',', '')
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
         Dj = original_data[0][26] if original_data[0][26] else None
         if ',' in str(Dj):
             Dj = Dj.replace(',', '')
@@ -165,8 +183,11 @@ def data_merge(com, original_data, path):
                     oil_ori.append(n[8])
                     Je = n[16]
                     Sl = n[25] if n[25] else None
+<<<<<<< HEAD
                     if ',' in str(Sl):
                         Sl = Sl.replace(',', '')
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
                     Dj = n[26] if n[26] else None
                     if ',' in str(Dj):
                         Dj = Dj.replace(',', '')
@@ -188,8 +209,11 @@ def data_merge(com, original_data, path):
             if len(str(n[25])) > 2:
                 Je = n[16]
                 Sl = n[25] if n[25] else None
+<<<<<<< HEAD
                 if ',' in str(Sl):
                     Sl = Sl.replace(',', '')
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
                 Dj = n[26] if n[26] else None
                 if ',' in str(Dj):
                     Dj = Dj.replace(',', '')
@@ -201,6 +225,7 @@ def data_merge(com, original_data, path):
             spmc = oil_list[i]
             t = [xf, gf, date, spmc]
             title.append(t)
+<<<<<<< HEAD
 
         if len(title) != len(price):
             print('详细记录不能一一对应')
@@ -254,6 +279,11 @@ def data_merge(com, original_data, path):
                 Je = round(float(n[16]), 2)
                 Sl = round(Je / Dj_t, 2)
                 result.append((xf, gf, date, spmc, Je, Sl, Dj, path))
+=======
+        for i in range(len(price)):
+            row = title[i] + price[i]
+            result.append(tuple(row))
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     else:   # 多个油品对应多家公司，油品数目与公司数目可能不等。或者一个产品对应多个公司
         if flag == 0:
             # xf = name_filter(com_list[0])
@@ -276,7 +306,10 @@ def main():
          '24结算日期', '25数量', '26单价', '27附件数']
         """
     path_list = gci('./XSZ')
+<<<<<<< HEAD
     # path_list = gci('./2020第一批/XSZ测试')
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     error_list = []
     error_data = []
     update_list = []
@@ -331,8 +364,11 @@ def main():
             update_list.extend(final_data)
     # print('err:',error_list)
     # print('update:',update_list)
+<<<<<<< HEAD
     # for i in update_list:
     #     print(i[-3])
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
 
     # 上传到数据库, 单独取录入错误的数据条数时要注释掉
     # 交易表入库sql

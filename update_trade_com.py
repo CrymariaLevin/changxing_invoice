@@ -38,7 +38,11 @@ xfcom = [i[0] for i in xfdata]
 cursor.execute(gfsql)
 gfdata = cursor.fetchall()
 gfcom = [i[0] for i in gfdata]
+<<<<<<< HEAD
 # print(gfcom)
+=======
+print(gfcom)
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
 cursor.execute(oilsql)
 oildata = cursor.fetchall()
 oil = [i[0] for i in oildata]
@@ -69,7 +73,10 @@ def updatex():
             print('更新销方 ', x)
             print(updatexf % (com_type, com_group, id, x))
             cursor.execute(updatexf % (com_type, com_group, id, x))
+<<<<<<< HEAD
             connection.commit()
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
             # if num != 0:
             #     print('%s更新成功' % x)
             # else:
@@ -77,7 +84,11 @@ def updatex():
         else:
             nfile.write(x + '\n')
         count += 1
+<<<<<<< HEAD
     # connection.commit()
+=======
+    connection.commit()
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     connection.close()
 
 
@@ -90,14 +101,17 @@ def updateg():
         cursor.execute(comsql % g)
         data = cursor.fetchall()
         if data:
-            print(data)
+            # print(data)
             id = data[0][0] if data[0][0] else ''
             com_type = data[0][1] if str(data[0][1]) else ''
             com_group = data[0][2] if str(data[0][2]) else ''
             print(id, com_type, com_group)
             print('更新购方 ', g)
             cursor.execute(updategf % (com_type, com_group, id, g))
+<<<<<<< HEAD
             connection.commit()
+=======
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
             # if num != 0:
             #     print('%s更新成功' % g)
             # else:
@@ -105,7 +119,11 @@ def updateg():
         else:
             nfile.write(g + '\n')
         count += 1
+<<<<<<< HEAD
     # connection.commit()
+=======
+    connection.commit()
+>>>>>>> 085df4d07418bf0f469123afd3ceefe166cb7ed5
     connection.close()
 
 
